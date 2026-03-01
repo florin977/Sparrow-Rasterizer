@@ -1,5 +1,6 @@
 #pragma once
 
+#include "sparrow_rasterizer/utils/pixel_buffer.hpp"
 #include <SDL3/SDL.h>
 #include <SDL3/SDL_render.h>
 #include <SDL3/SDL_video.h>
@@ -8,7 +9,11 @@ namespace sparrow_rasterizer {
 class Window {
 private:
   SDL_Renderer *renderer;
+  SDL_Texture *canvas;
+  int width;
+  int height;
   bool is_running;
+  Buffer buffer;
 
 public:
   SDL_Window *window_handle;
