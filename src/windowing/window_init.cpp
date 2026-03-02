@@ -85,11 +85,6 @@ void Window::handle_keys() {
 }
 
 void Window::render() {
-  for (int x = 0; x < width; x++) {
-    for (int y = 0; y < height; y++) {
-      buffer.set_pixel(x, y, glm::vec4{1.0f, 1.0f, 1.0f, 1.0f});
-    }
-  }
   SDL_UpdateTexture(canvas, NULL, buffer.get_data(), buffer.get_pitch());
   SDL_RenderTexture(renderer, canvas, NULL, NULL);
 
