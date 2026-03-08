@@ -6,3 +6,6 @@ This will include features the original did not (as well as a better written cod
 - Actual lightning
 - SIMD
 - Multithreading
+
+## Gallery
+![Suzzane-render](./media/Suzzane.png)
