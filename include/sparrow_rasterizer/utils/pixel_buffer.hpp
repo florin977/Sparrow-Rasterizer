@@ -17,6 +17,7 @@ public:
   void resize_buffer(int width, int height);
   void clear_buffer(glm::vec4 color);
   void set_pixel(int x, int y, glm::vec4 color);
+  uint32_t get_pixel(int x, int y);
   int get_pitch();
   void *get_data();
 };

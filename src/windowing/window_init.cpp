@@ -54,6 +54,7 @@ Window::~Window() {
 
 void Window::event_loop() {
   while (active()) {
+
     handle_events();
     render();
   }
@@ -89,6 +90,7 @@ void Window::render() {
   SDL_RenderTexture(renderer, canvas, NULL, NULL);
 
   SDL_RenderPresent(renderer);
+  buffer.clear_buffer(glm::vec4(0.0f, 0.0f, 0.0f, 1.0f));
 }
 
 bool Window::active() { return is_running; }

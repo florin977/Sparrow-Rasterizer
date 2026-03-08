@@ -37,6 +37,18 @@ void Buffer::set_pixel(int x, int y, glm::vec4 color) {
   pixels[index] = vec4_to_uint32(color);
 }
 
+uint32_t Buffer::get_pixel(int x, int y) {
+  if (!(x >= 0 && y >= 0 && x < width && y < height)) {
+    return 0;
+  }
+  int index = y * width + x;
+  if (index >= pixels.size()) {
+    return 0;
+  }
+
+  return pixels[index];
+}
+
 int Buffer::get_pitch() { return width * sizeof(uint32_t); }
 void *Buffer::get_data() { return pixels.data(); }
 

@@ -6,6 +6,7 @@
 namespace sparrow_rasterizer {
 class VertexStage {
 public:
-  static void render(std::vector<Model *> &models, Camera &camera);
+  static void render(std::vector<Model *> &models, Camera &camera,
+                     std::vector<Vertex> &VSOutput);
 };
 } // namespace sparrow_rasterizer

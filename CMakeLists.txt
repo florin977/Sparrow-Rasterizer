@@ -18,12 +18,15 @@ target_sources(sparrow_lib
     src/windowing/window_init.cpp
     src/utils/pixel_buffer.cpp
     src/utils/vertex_type.cpp
+    src/utils/triangle_type.cpp
+    src/utils/pixel_type.cpp
     src/utils/mesh_type.cpp
     src/utils/model_type.cpp
     src/utils/camera.cpp
     src/utils/scene.cpp
     src/utils/command_type.cpp
     src/loader/obj_loader.cpp
+    src/loader/app.cpp
   PUBLIC
     FILE_SET HEADERS
     BASE_DIRS 
@@ -36,12 +39,15 @@ target_sources(sparrow_lib
       include/sparrow_rasterizer/windowing/window_init.hpp
       include/sparrow_rasterizer/utils/pixel_buffer.hpp
       include/sparrow_rasterizer/utils/vertex_type.hpp
+      include/sparrow_rasterizer/utils/triangle_type.hpp
+      include/sparrow_rasterizer/utils/pixel_type.hpp
       include/sparrow_rasterizer/utils/mesh_type.hpp
       include/sparrow_rasterizer/utils/model_type.hpp
       include/sparrow_rasterizer/utils/camera.hpp
       include/sparrow_rasterizer/utils/scene.hpp
       include/sparrow_rasterizer/utils/command_type.hpp
       include/sparrow_rasterizer/loader/obj_loader.hpp
+      include/sparrow_rasterizer/loader/app.hpp
 )
 
 add_executable(rasterizer

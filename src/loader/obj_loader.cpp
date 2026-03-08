@@ -45,13 +45,24 @@ std::vector<Mesh> ObjLoader::load(const std::string &filename) {
         tinyobj::real_t vx = attrib.vertices[3 * index.vertex_index + 0];
         tinyobj::real_t vy = attrib.vertices[3 * index.vertex_index + 1];
         tinyobj::real_t vz = attrib.vertices[3 * index.vertex_index + 2];
+
+        tinyobj::real_t nx = 0.0f;
+        tinyobj::real_t ny = 1.0f;
+        tinyobj::real_t nz = 0.0f;
+
+        tinyobj::real_t v = 0.0f;
+        tinyobj::real_t t = 0.0f;
         // Normal
-        tinyobj::real_t nx = attrib.normals[3 * index.normal_index + 0];
-        tinyobj::real_t ny = attrib.normals[3 * index.normal_index + 1];
-        tinyobj::real_t nz = attrib.normals[3 * index.normal_index + 1];
+        if (attrib.normals.size() != 0) {
+          nx = attrib.normals[3 * index.normal_index + 0];
+          ny = attrib.normals[3 * index.normal_index + 1];
+          nz = attrib.normals[3 * index.normal_index + 1];
+        }
         // UVs
-        tinyobj::real_t v = attrib.texcoords[2 * index.texcoord_index + 0];
-        tinyobj::real_t t = attrib.texcoords[2 * index.texcoord_index + 1];
+        if (attrib.texcoords.size() != 0) {
+          v = attrib.texcoords[2 * index.texcoord_index + 0];
+          t = attrib.texcoords[2 * index.texcoord_index + 1];
+        }
 
         Vertex new_vertex;
         new_vertex.position = {vx, vy, vz, 1.0};

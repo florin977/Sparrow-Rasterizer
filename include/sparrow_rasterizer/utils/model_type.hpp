@@ -18,6 +18,7 @@ public:
   Model();
   Model(const std::string &filename);
   glm::mat4 get_model_matrix();
+  std::vector<Mesh> &getMeshes();
   void translate(glm::vec3 move);
   void rotate(glm::vec3 angles);
   void scale(glm::vec3 scales);

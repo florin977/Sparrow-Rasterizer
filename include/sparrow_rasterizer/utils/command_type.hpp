@@ -11,6 +11,6 @@ public:
   CommandType type;
   std::string filename;
 
-  Command(CommandType type, std::string &filename);
+  Command(CommandType type, const std::string &filename);
 };
 } // namespace sparrow_rasterizer

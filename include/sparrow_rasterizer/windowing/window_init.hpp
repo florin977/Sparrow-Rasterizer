@@ -10,12 +10,12 @@ class Window {
 private:
   SDL_Renderer *renderer;
   SDL_Texture *canvas;
-  int width;
-  int height;
   bool is_running;
-  Buffer buffer;
 
 public:
+  int width;
+  int height;
+  Buffer buffer;
   SDL_Window *window_handle;
   SDL_Event event;
 

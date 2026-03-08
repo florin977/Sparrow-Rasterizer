@@ -8,7 +8,8 @@
 namespace sparrow_rasterizer {
 Camera::Camera()
     : position(glm::vec3{0.0f, 0.0f, -1.0f}),
-      center(glm::vec3{0.0f, 0.0f, 0.0}), up(glm::vec3{0.0f, 1.0f, 0.0f}) {};
+      center(glm::vec3{0.0f, 0.0f, 0.0}), up(glm::vec3{0.0f, 1.0f, 0.0f}),
+      fov(45.0f), near(0.1f), far(100.0f) {};
 
 void Camera::translate(glm::vec3 move) { position += move; }
 
