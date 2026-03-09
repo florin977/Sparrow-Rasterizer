@@ -11,8 +11,9 @@ bool Vertex::inside_clip_space() const {
          (-position.w <= position.y && position.y <= position.w);
 }
 
-glm::uvec2 Vertex::ndc_to_screen(int width, int height) const {
-  return glm::uvec2(((this->position.x + 1.0f) / 2.0f) * width,
-                    ((this->position.y + 1.0f) / 2.0f) * height);
+glm::vec3 Vertex::ndc_to_screen(int width, int height) const {
+  return glm::vec3(((this->position.x + 1.0f) / 2.0f) * width,
+                   ((this->position.y + 1.0f) / 2.0f) * height,
+                   (this->position.z + 1.0f) / 2.0f);
 };
 } // namespace sparrow_rasterizer

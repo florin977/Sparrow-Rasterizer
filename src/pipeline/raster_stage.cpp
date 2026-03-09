@@ -1,13 +1,11 @@
 #include "sparrow_rasterizer/pipeline/raster_stage.hpp"
-#include "sparrow_rasterizer/utils/pixel_buffer.hpp"
 #include "sparrow_rasterizer/utils/triangle_type.hpp"
-#include "sparrow_rasterizer/utils/vertex_type.hpp"
 #include <cstddef>
 
 namespace sparrow_rasterizer {
 void RasterStage::render(std::vector<Vertex> &VSInput,
                          std::vector<Model *> models, int width, int height,
-                         Buffer &pixel_buffer) {
+                         Buffer &pixel_buffer, DepthBuffer &depth_buffer) {
   uint32_t vertex_offset = 0;
   for (auto model : models) {
     for (auto mesh : model->getMeshes()) {
@@ -38,7 +36,7 @@ void RasterStage::render(std::vector<Vertex> &VSInput,
 
         Triangle tri(a, b, c);
 
-        tri.draw(pixel_buffer, width, height);
+        tri.draw(pixel_buffer, depth_buffer, width, height, i);
       }
 
       vertex_offset += mesh.vertices.size();

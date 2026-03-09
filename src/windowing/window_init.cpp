@@ -1,3 +1,4 @@
+#include "sparrow_rasterizer/utils/depth_buffer.hpp"
 #include "sparrow_rasterizer/utils/pixel_buffer.hpp"
 #include <SDL3/SDL.h>
 #include <SDL3/SDL_error.h>
@@ -12,7 +13,8 @@
 #include <sparrow_rasterizer/windowing/window_init.hpp>
 
 namespace sparrow_rasterizer {
-Window::Window() : width(1280), height(720), buffer(1280, 720) {
+Window::Window()
+    : width(1280), height(720), buffer(1280, 720), depth_buffer(1280, 720) {
   if (SDL_Init(SDL_INIT_VIDEO) == false) {
     SDL_Log("Failed to start SDL Video: %s\n", SDL_GetError());
   }
@@ -52,15 +54,9 @@ Window::~Window() {
   }
 }
 
-void Window::event_loop() {
-  while (active()) {
+void Window::event_loop() {}
 
-    handle_events();
-    render();
-  }
-}
-
-void Window::handle_events() {
+void Window::handle_events(Scene &scene) {
   while (SDL_PollEvent(&event)) {
     switch (event.type) {
     case SDL_EVENT_QUIT:
@@ -69,18 +65,31 @@ void Window::handle_events() {
     case SDL_EVENT_WINDOW_RESIZED:
       SDL_GetWindowSize(window_handle, &width, &height);
       buffer.resize_buffer(width, height);
+      depth_buffer.resize_buffer(width, height);
       break;
     case SDL_EVENT_KEY_DOWN:
-      handle_keys();
+      handle_keys(scene);
       break;
     }
   }
 }
 
-void Window::handle_keys() {
+void Window::handle_keys(Scene &scene) {
   switch (event.key.key) {
   case SDLK_ESCAPE:
     stop();
+    break;
+  case SDLK_W:
+    scene.camera.translate_forward(0.1f);
+    break;
+  case SDLK_S:
+    scene.camera.translate_backward(0.1f);
+    break;
+  case SDLK_A:
+    scene.camera.translate_left(0.1f);
+    break;
+  case SDLK_D:
+    scene.camera.translate_right(0.1f);
     break;
   }
 }
@@ -91,6 +100,7 @@ void Window::render() {
 
   SDL_RenderPresent(renderer);
   buffer.clear_buffer(glm::vec4(0.0f, 0.0f, 0.0f, 1.0f));
+  depth_buffer.clear_buffer();
 }
 
 bool Window::active() { return is_running; }

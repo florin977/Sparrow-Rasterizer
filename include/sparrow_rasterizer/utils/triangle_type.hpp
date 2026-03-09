@@ -1,5 +1,6 @@
 #pragma once
 
+#include "sparrow_rasterizer/utils/depth_buffer.hpp"
 #include "sparrow_rasterizer/utils/pixel_buffer.hpp"
 #include "sparrow_rasterizer/utils/pixel_type.hpp"
 #include <glm/fwd.hpp>
@@ -12,19 +13,20 @@ public:
   Triangle(const Vertex &a, const Vertex &b, const Vertex &c);
 
   // Cross product -> 2 * Area
-  float edge_function(const glm::ivec2 &p, const glm::ivec2 &v0,
-                      const glm::ivec2 &v1);
+  float edge_function(const glm::vec3 &p, const glm::vec3 &v0,
+                      const glm::vec3 &v1);
 
-  float edge_function(const Pixel &p, const glm::ivec2 &v0,
-                      const glm::ivec2 &v1);
+  float edge_function(const glm::vec2 &p, const glm::vec3 &v0,
+                      const glm::vec3 &v1);
 
   bool contains_pixel(const glm::vec3 &weights);
   // Actually 2 * Area, since the actual area is not needed for rasterization
-  float get_area(const glm::ivec2 &a, const glm::ivec2 &b, const glm::ivec2 &c);
+  float get_area(const glm::vec3 &a, const glm::vec3 &b, const glm::vec3 &c);
 
-  glm::vec3 get_weights(const Pixel &p, const glm::ivec2 &a,
-                        const glm::ivec2 &b, const glm::ivec2 &c, float area);
+  glm::vec3 get_weights(const glm::vec2 &p, const glm::vec3 &a,
+                        const glm::vec3 &b, const glm::vec3 &c, float area);
 
-  void draw(Buffer &pixel, int width, int height);
+  void draw(Buffer &pixel, DepthBuffer &depth_buffer, int width, int height,
+            int triangle_id);
 };
 } // namespace sparrow_rasterizer

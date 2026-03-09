@@ -1,8 +1,8 @@
 #pragma once
 
+#include "sparrow_rasterizer/utils/depth_buffer.hpp"
 #include "sparrow_rasterizer/windowing/window_init.hpp"
 #include <sparrow_rasterizer/utils/command_type.hpp>
-#include <sparrow_rasterizer/utils/scene.hpp>
 #include <sparrow_rasterizer/utils/triangle_type.hpp>
 #include <sparrow_rasterizer/utils/vertex_type.hpp>
 #include <vector>
@@ -17,6 +17,7 @@ private:
 public:
   GraphicsPipeline();
   void send_command(Command command);
-  void execute_commands(Window &window, Buffer &pixel_buffer, Scene &scene);
+  void execute_commands(Window &window, Buffer &pixel_buffer,
+                        DepthBuffer &depth_buffer, Scene &scene);
 };
 } // namespace sparrow_rasterizer

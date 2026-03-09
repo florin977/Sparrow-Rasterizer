@@ -27,6 +27,7 @@ target_sources(sparrow_lib
     src/utils/command_type.cpp
     src/loader/obj_loader.cpp
     src/loader/app.cpp
+    src/utils/depth_buffer.cpp
   PUBLIC
     FILE_SET HEADERS
     BASE_DIRS 
@@ -48,6 +49,7 @@ target_sources(sparrow_lib
       include/sparrow_rasterizer/utils/command_type.hpp
       include/sparrow_rasterizer/loader/obj_loader.hpp
       include/sparrow_rasterizer/loader/app.hpp
+      include/sparrow_rasterizer/utils/depth_buffer.hpp
 )
 
 add_executable(rasterizer

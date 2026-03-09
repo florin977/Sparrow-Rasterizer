@@ -2,6 +2,7 @@
 #include "sparrow_rasterizer/pipeline/raster_stage.hpp"
 #include "sparrow_rasterizer/pipeline/vertex_stage.hpp"
 #include "sparrow_rasterizer/utils/command_type.hpp"
+#include "sparrow_rasterizer/utils/depth_buffer.hpp"
 #include "sparrow_rasterizer/utils/model_type.hpp"
 #include "sparrow_rasterizer/utils/pixel_buffer.hpp"
 #include "sparrow_rasterizer/windowing/window_init.hpp"
@@ -15,6 +16,7 @@ void GraphicsPipeline::send_command(Command command) {
 }
 
 void GraphicsPipeline::execute_commands(Window &window, Buffer &pixel_buffer,
+                                        DepthBuffer &depth_buffer,
                                         Scene &scene) {
   if (commands.empty()) {
     return;
@@ -49,7 +51,7 @@ void GraphicsPipeline::execute_commands(Window &window, Buffer &pixel_buffer,
   // VSOutput will contain Clip Space coordinates
   VertexStage::render(models_to_render, scene.camera, VSOutput);
   RasterStage::render(VSOutput, models_to_render, window.width, window.height,
-                      pixel_buffer);
+                      pixel_buffer, depth_buffer);
 
   commands.clear();
 }

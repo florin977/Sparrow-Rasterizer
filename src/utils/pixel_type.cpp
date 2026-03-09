@@ -2,4 +2,4 @@
 
 namespace sparrow_rasterizer {
 Pixel::Pixel(int x, int y) : x(x), y(y) {};
-}
+} // namespace sparrow_rasterizer
